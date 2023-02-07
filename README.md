@@ -1,26 +1,26 @@
-# Telegram Bot Vercel Boilerplate
+# 唧唧 bot
 
-Telegram Bot Vercel Boilerplate based on Node.js and [Telegraf](https://github.com/telegraf/telegraf) framework.
+使用 Nodejs 开发的 Telegram bot，部署在 Vercel
 
-## Before you start
+## 环境变量
 
-First rename `.env-sample` file to `.env` and fill in all necessary values.
+将文件 `.env-sample` 重命名为 `.env`
 
 ```
 BOT_TOKEN="<YOUR_BOT_API_TOKEN>"
 ```
 
-## Start your server
+## 调试
 
 ```
-npm install
-npm dev
+pnpm install
+pnpm dev
 ```
 
-## Production
+## 部署到 Vercel
 
-You can fork this template and do the necessary changes you need. Then you when are done with your changes simply goto [vercel git import](https://vercel.com/import/git).
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https%3A%2F%2Fgithub.com%2Fyesmore%2Fgg-bot&env=BOT_TOKEN&envDescription=Environment%20variables%20needed%20to%20setup%20notifier&envLink=https%3A%2F%2Fgithub.com%2Fyesmore%2Fgg-bot%23environment-variables&project-name=gg-bot&repo-name=gg-bot)
 
 ## Demo
 
-You can see a working version of the bot at [@akajs_bot](https://t.me/yesmore_cc)
+Working here: [@akajs_bot](https://t.me/yesmore_cc)

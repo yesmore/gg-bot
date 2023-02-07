@@ -1,6 +1,6 @@
 import { Telegraf } from 'telegraf';
 
-import { about } from './commands';
+import { about, start } from './commands';
 import { greeting } from './text';
 import { VercelRequest, VercelResponse } from '@vercel/node';
 import { development, production } from './core';
@@ -10,8 +10,9 @@ const ENVIRONMENT = process.env.NODE_ENV || '';
 
 const bot = new Telegraf(BOT_TOKEN);
 
+bot.command('start', start());
 bot.command('about', about());
-bot.on('message', greeting());
+// bot.on('message', greeting());
 
 //prod mode (Vercel)
 export const startVercel = async (req: VercelRequest, res: VercelResponse) => {
