@@ -3,7 +3,7 @@
   "version": "0.1.1",
   "description": "Telegram Bot Vercel Nodejs",
   "main": "src/index.ts",
-  "author": "yesmore (https://github.com/yesmore)",
+  "author": "yesmore",
   "homepage": "https://github.com/yesmore/gg-bot",
   "dependencies": {
     "@vercel/node": "^2.8.5",
