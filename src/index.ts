@@ -1,10 +1,11 @@
 import { Telegraf } from 'telegraf';
 import { message } from 'telegraf/filters';
-
 import { about, start, list, photo } from './commands';
 import { greeting } from './text';
 import { VercelRequest, VercelResponse } from '@vercel/node';
 import { development, production } from './core';
+import { White_List_Rule } from './common/constants';
+import { replyToMessage } from './utils';
 
 const BOT_TOKEN = process.env.BOT_TOKEN || '';
 const ENVIRONMENT = process.env.NODE_ENV || '';
@@ -17,8 +18,11 @@ bot.command('pt', photo());
 bot.command('list', list());
 
 bot.on(message('new_chat_members'), greeting());
+
 bot.hears('GG boy', (ctx) => ctx.reply('童话里做英雄'));
-bot.hears(/^大佬(ddw|666)$|^ddw$/, (ctx) => ctx.reply('呵'));
+bot.hears(White_List_Rule, (ctx) =>
+  replyToMessage(ctx, ctx.message?.message_id, `呵`)
+);
 bot.hears(/r (.+)/, (ctx) =>
   ctx.reply(`reverse: ${ctx.match[1].split('').reverse().join('')}`)
 );
