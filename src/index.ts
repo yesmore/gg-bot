@@ -19,11 +19,11 @@ bot.command('cat', (ctx) => ctx.replyWithPhoto(randomPhoto));
 // bot.on('message', greeting());
 bot.on(message('new_chat_members'), greeting());
 bot.on(message('sticker'), (ctx) => ctx.reply('👍'));
-bot.hears(/\/list/, cmd_list());
+// bot.hears(/\/list/, cmd_list());
 bot.hears('GG boy', (ctx) => ctx.reply('童话里做英雄'));
-bot.hears(/reverse (.+)/, (ctx) =>
-  ctx.reply(`reverse: ${ctx.match[1].split('').reverse().join('')}`)
-);
+// bot.hears(/reverse (.+)/, (ctx) =>
+//   ctx.reply(`reverse: ${ctx.match[1].split('').reverse().join('')}`)
+// );
 
 //prod mode (Vercel)
 export const startVercel = async (req: VercelRequest, res: VercelResponse) => {
