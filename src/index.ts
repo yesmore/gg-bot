@@ -13,10 +13,12 @@ const bot = new Telegraf(BOT_TOKEN);
 
 bot.command('start', start());
 bot.command('about', about());
-// bot.command('list', cmd_list());
+// message filter
 // bot.on('message', greeting());
 bot.on(message('new_chat_members'), greeting());
 bot.on(message('sticker'), (ctx) => ctx.reply('👍'));
+// custom cmdS
+bot.hears('/cmd', cmd_list());
 bot.hears('GG boy', (ctx) => ctx.reply('童话里做英雄'));
 
 //prod mode (Vercel)

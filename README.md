@@ -2,12 +2,12 @@
 
 使用 Nodejs 开发的 Telegram 机器人助手，部署在 Vercel
 
-<!-- <table style="border:none">
+<table style="border:none">
 <tr>
-<td align='center'><img src='https://i.postimg.cc/C1zyDBZ8/deploy1.png'/></td>
-<td align='center'><img src='https://i.postimg.cc/hjwk0Dx5/deploy2.png'/></td>
+<td align='center'><img src='https://i.postimg.cc/HsF6ZWHV/Screenshot-20230207-154656-org-telegram-messenger-web.png'/></td>
+<td align='center'><img src='https://i.postimg.cc/cLHdmmxs/Screenshot-20230207-154742-org-telegram-messenger-web.png'/></td>
 </tr>
-</table> -->
+</table>
 
 ## 本地调试
 
