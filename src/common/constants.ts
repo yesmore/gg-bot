@@ -6,5 +6,6 @@ export const White_List = [
   'jb',
   '卷b',
   '卷逼',
+  '别卷了',
 ];
 export const White_List_Rule = new RegExp(`^(${White_List.join('|')})$`);
