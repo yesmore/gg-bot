@@ -13,7 +13,7 @@ const bot = new Telegraf(BOT_TOKEN);
 
 bot.command('start', start());
 bot.command('about', about());
-bot.command('list', cmd_list());
+// bot.command('list', cmd_list());
 // bot.on('message', greeting());
 bot.on(message('new_chat_members'), greeting());
 bot.on(message('sticker'), (ctx) => ctx.reply('👍'));
