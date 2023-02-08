@@ -46,7 +46,14 @@ async function chatGpt(ctx: Context, msg: string) {
       '>:',
       response.text
     );
-    await replyToMessage(ctx, ctx.message?.message_id!, response.text);
+    // await replyToMessage(ctx, ctx.message?.message_id!, response.text);
+    await bot.telegram.editMessageText(
+      ctx.chat?.id,
+      ctx.message?.message_id,
+      undefined,
+      response.text,
+      { parse_mode: 'Markdown' }
+    );
     // ctx.editMessageText(response.text, {
     //   chat_id: ctx.chat?.id,
     //   message_id: ctx.message?.message_id,
