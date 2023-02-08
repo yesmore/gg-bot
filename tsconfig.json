@@ -1,13 +1,15 @@
 {
   "compilerOptions": {
-    "strict": true,
+    "strict": false,
     "target": "es2020",
     "moduleResolution": "node",
-    "module": "Node16",
+    "module": "esnext",
+    "esModuleInterop": true,
+    "isolatedModules": true,
     "skipLibCheck": true,
     "sourceMap": true,
     "outDir": "public",
-    "lib": ["es2020", "dom"],
+    "lib": ["esnext", "dom"],
     "resolveJsonModule": true
   },
   "exclude": ["node_modules"]
