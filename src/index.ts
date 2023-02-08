@@ -1,6 +1,6 @@
 import { Context, Telegraf } from 'telegraf';
 import { message } from 'telegraf/filters';
-import { ChatGPTAPI } from 'chatgpt';
+// import { ChatGPTAPI } from 'chatgpt';
 import { about, start, list, photo } from './commands';
 import { greeting } from './text';
 import { VercelRequest, VercelResponse } from '@vercel/node';
@@ -12,8 +12,13 @@ const BOT_TOKEN = process.env.BOT_TOKEN || '';
 const ENVIRONMENT = process.env.NODE_ENV || '';
 const OPEN_AI_API_KEY = process.env.OPEN_AI_API_KEY || '';
 
+const useChatGPT = async () => {
+  const { ChatGPTAPI } = await import('chatgpt');
+  return new ChatGPTAPI({ apiKey: OPEN_AI_API_KEY });
+};
+
 const bot = new Telegraf(BOT_TOKEN);
-const api = new ChatGPTAPI({ apiKey: OPEN_AI_API_KEY });
+const api = useChatGPT();
 
 bot.command('start', start());
 bot.command('about', about());
@@ -38,7 +43,7 @@ async function chatGpt(ctx: Context, msg: string) {
   try {
     await ctx.reply(`🤔正在组织语言，请稍等...`);
     ctx.sendChatAction('typing');
-    const response = await api.sendMessage(msg);
+    const response = await (await api).sendMessage(msg);
     console.log(
       new Date().toLocaleString(),
       '--AI response to <',
