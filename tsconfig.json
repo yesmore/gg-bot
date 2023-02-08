@@ -1,18 +1,15 @@
 {
   "compilerOptions": {
     "strict": true,
-    "target": "ES2020",
+    "target": "esnext",
     "moduleResolution": "node",
-    "module": "Node16",
+    "module": "CommonJS",
     "skipLibCheck": true,
     "sourceMap": true,
     "outDir": "public",
-    "lib": ["ES2020", "dom"],
+    "lib": ["esnext", "dom"],
     "resolveJsonModule": true
   },
   "exclude": ["node_modules"],
-  "include": ["./src/**/*"],
-  "ts-node": {
-    "esm": true
-  }
+  "include": ["./src/**/*"]
 }
