@@ -3,6 +3,7 @@ import { about } from './about';
 import { start } from './start';
 import { list } from './list';
 import { photo } from './photo';
+import './word_game';
 
 bot.command('start', start());
 bot.command('about', about());
