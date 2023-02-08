@@ -15,3 +15,6 @@ bot.hears(/gpt (.+)/, (ctx) => {
   ctx.reply('接入中...');
   // chatGpt(ctx, bot, msg);
 });
+bot.hears(/@akajs_bot/, (ctx) => {
+  ctx.reply('你瞅啥？');
+});

@@ -5,14 +5,14 @@ import { message } from 'telegraf/filters';
 export const word_game = () => async (ctx: Context) => {};
 
 const wordList = ['apple', 'banana', 'cherry'];
-const regex = new RegExp(`^@${bot.botInfo?.username}\\s(\\w+)`);
+const regex = new RegExp(`^@${bot.botInfo?.username} (.+)`);
 const scores = new Map();
 
-bot.hears('/word', (ctx) => {
+bot.hears('/guess', (ctx) => {
   ctx.reply('Welcome to the Word Game! Start by guessing a word.');
 });
 
-bot.hears(/^@${bot.botInfo?.username}\\s(\\w+)/, (ctx) => {
+bot.hears(regex, (ctx) => {
   // if (!ctx.message.text.startsWith('@' + bot.botInfo?.username)) {
   //   return;
   // }
