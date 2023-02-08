@@ -1,12 +1,12 @@
-import { Context, Telegraf } from 'telegraf';
+import { Telegraf } from 'telegraf';
 import { message } from 'telegraf/filters';
-
 import { about, start, list, photo } from './commands';
 import { greeting } from './text';
 import { VercelRequest, VercelResponse } from '@vercel/node';
 import { development, production } from './core';
 import { White_List_Rule } from './common/constants';
 import { replyToMessage } from './utils';
+import './task/exercise';
 
 const BOT_TOKEN = process.env.BOT_TOKEN || '';
 const ENVIRONMENT = process.env.NODE_ENV || '';
@@ -32,6 +32,8 @@ bot.hears(/gpt (.+)/, (ctx) => {
   ctx.reply('接入中...');
   // chatGpt(ctx, bot, msg);
 });
+
+export { bot };
 
 //prod mode (Vercel)
 export const startVercel = async (req: VercelRequest, res: VercelResponse) => {

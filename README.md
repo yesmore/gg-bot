@@ -11,13 +11,14 @@
 
 ## 本地调试
 
-```
+```bash
 git clone https://github.com/yesmore/gg-bot.git
+cd gg-bot
 pnpm install
 pnpm dev
 ```
 
-## Vercel 部署
+## 部署到 Vercel
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https%3A%2F%2Fgithub.com%2Fyesmore%2Fgg-bot&env=BOT_TOKEN&envDescription=Environment%20variables%20needed%20to%20setup%20notifier&envLink=https%3A%2F%2Fgithub.com%2Fyesmore%2Fgg-bot%23environment-variables&project-name=gg-bot&repo-name=gg-bot)
 
@@ -32,6 +33,10 @@ pnpm dev
 ## 示例机器人
 
 Working here: [@akajs_bot](https://t.me/yesmore_cc)
+
+### 未来计划
+
+- [ ] 接入ChatGPt
 
 ## 参考资料
 
