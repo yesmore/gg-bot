@@ -7,7 +7,7 @@
   "homepage": "https://github.com/yesmore/gg-bot",
   "dependencies": {
     "@vercel/node": "^2.8.5",
-    "chatgpt": "^4.2.0",
+    "chatgpt": "^4.1.2",
     "dotenv-cli": "^6.0.0",
     "telegraf": "^4.11.2"
   },

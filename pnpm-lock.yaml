@@ -5,7 +5,7 @@ specifiers:
   '@types/node': ^18.11.18
   '@vercel/ncc': ^0.36.0
   '@vercel/node': ^2.8.5
-  chatgpt: ^4.2.0
+  chatgpt: ^4.1.2
   debug: ^4.3.4
   dotenv-cli: ^6.0.0
   nodemon: ^2.0.20
