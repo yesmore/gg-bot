@@ -1,4 +1,4 @@
-import bot from '../bot';
+import bot from '../../bot';
 import { message } from 'telegraf/filters';
 import { greeting } from './greeting';
 

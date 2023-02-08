@@ -1,4 +1,4 @@
-import bot from '../bot';
+import bot from '../../bot';
 import { about } from './about';
 import { start } from './start';
 import { list } from './list';

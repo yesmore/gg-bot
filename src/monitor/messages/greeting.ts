@@ -1,6 +1,6 @@
 import { Context } from 'telegraf';
 import createDebug from 'debug';
-import { replyToMessage } from '../utils';
+import { replyToMessage } from '../../utils';
 
 const debug = createDebug('bot:greeting_text');
 
