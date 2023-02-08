@@ -8,3 +8,6 @@ bot.command('start', start());
 bot.command('about', about());
 bot.command('pt', photo());
 bot.command('list', list());
+bot.command('quit', async (ctx) => {
+  await ctx.leaveChat();
+});

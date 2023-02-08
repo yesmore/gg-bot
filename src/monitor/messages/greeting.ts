@@ -4,7 +4,7 @@ import { replyToMessage } from '../../utils';
 
 const debug = createDebug('bot:greeting_text');
 
-const greeting = () => async (ctx: Context) => {
+export const greeting = () => async (ctx: Context) => {
   debug('Triggered "greeting" text command');
 
   const messageId = ctx.message?.message_id;
@@ -14,5 +14,3 @@ const greeting = () => async (ctx: Context) => {
     await replyToMessage(ctx, messageId, `👏欢迎加入, ${userName}!`);
   }
 };
-
-export { greeting };
