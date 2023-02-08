@@ -12,4 +12,5 @@ cron.schedule('*/10 * * * * *', () => {
     CHAT_ID,
     `Current time is ${now}. This is message number ${count}.`
   );
+  console.log(`Current time is ${now}. This is message number ${count}.`);
 });
