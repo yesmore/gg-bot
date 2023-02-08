@@ -7,7 +7,7 @@ const scores = new Map();
 
 bot.command('guess', (ctx) => {
   ctx.reply(
-    `🎯欢迎来到猜词游戏!\n\n格式: @${bot.botInfo?.username} xxx\n积分：猜对加1，错误不变，使用 /score 查看个人积分`
+    `🎯欢迎来到猜词游戏!\n\n格式: @${bot.botInfo?.username} xxx\n积分：猜对加1，错误不变，使用 /score 查看个人积分\n提示：三种水果`
   );
 });
 
