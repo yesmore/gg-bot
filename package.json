@@ -5,6 +5,7 @@
   "main": "src/index.ts",
   "author": "yesmore",
   "homepage": "https://github.com/yesmore/gg-bot",
+  "type": "module",
   "dependencies": {
     "@vercel/node": "^2.8.5",
     "chatgpt": "^4.2.0",
