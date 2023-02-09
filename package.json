@@ -21,6 +21,7 @@
   },
   "devDependencies": {
     "@types/debug": "^4.1.7",
+    "@types/lodash": "^4.14.191",
     "@types/node": "^18.11.18",
     "@types/node-cron": "^3.0.7",
     "@vercel/ncc": "^0.36.0",

@@ -8,7 +8,6 @@ import { gg_boy, be_yourself } from './commands/white_word';
 import './commands/word_game';
 
 bot.on(message('new_chat_members'), greeting());
-
 bot.command('start', start());
 bot.command('about', about());
 bot.command('pt', photo());
@@ -17,8 +16,6 @@ bot.command('quit', async (ctx) => {
   await ctx.leaveChat();
 });
 
-bot.hears('gg boy', gg_boy);
-bot.hears(White_List_Rule, be_yourself);
 bot.hears(/r (.+)/, (ctx) =>
   ctx.reply(`reverse: ${ctx.match[1].split('').reverse().join('')}`)
 );
@@ -26,6 +23,8 @@ bot.hears(/gpt (.+)/, (ctx) => {
   const msg = ctx.match[1];
   ctx.reply('接入中...');
 });
+bot.hears('gg boy', gg_boy);
+bot.hears(White_List_Rule, be_yourself);
 // bot.hears(/@akajs_bot/, (ctx) => {
 //   ctx.reply('你瞅啥？');
 // });
