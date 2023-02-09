@@ -10,7 +10,7 @@ import './commands/word_game';
 bot.on(message('new_chat_members'), greeting());
 bot.command('start', start());
 bot.command('about', about());
-bot.command('pt', photo());
+bot.command(['pt', 'pr', 'prpr'], photo());
 bot.command('list', list());
 bot.command('quit', async (ctx) => {
   await ctx.leaveChat();
