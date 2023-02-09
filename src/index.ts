@@ -1,9 +1,7 @@
 import { VercelRequest, VercelResponse } from '@vercel/node';
 import { development, production } from './core';
 import bot from './bot';
-import './monitor/commands';
-import './monitor/messages';
-import './monitor/hears';
+import './monitor';
 
 const ENVIRONMENT = process.env.NODE_ENV || '';
 
