@@ -1,3 +1,4 @@
+import axios from 'axios';
 import {
   createParser,
   ParsedEvent,
@@ -22,14 +23,25 @@ export async function OpenAIStream(payload: OpenAIStreamPayload) {
 
   let counter = 0;
 
-  const res = await fetch('https://api.openai.com/v1/completions', {
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${process.env.OPEN_AI_API_KEY ?? ''}`,
-    },
-    method: 'POST',
-    body: JSON.stringify(payload),
-  });
+  // const res = await fetch('https://api.openai.com/v1/completions', {
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //     Authorization: `Bearer ${process.env.OPEN_AI_API_KEY ?? ''}`,
+  //   },
+  //   method: 'POST',
+  //   body: JSON.stringify(payload),
+  // });
+  const res = await axios.post(
+    'https://api.openai.com/v1/completions',
+    JSON.stringify(payload),
+    {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${process.env.OPEN_AI_API_KEY ?? ''}`,
+      },
+    }
+  );
+  console.log(res.data);
 
   const stream = new ReadableStream({
     async start(controller) {
@@ -63,7 +75,7 @@ export async function OpenAIStream(payload: OpenAIStreamPayload) {
       // this ensures we properly read chunks and invoke an event for each SSE event stream
       const parser = createParser(onParse);
       // https://web.dev/streams/#asynchronous-iteration
-      for await (const chunk of res.body as any) {
+      for await (const chunk of res.data as any) {
         parser.feed(decoder.decode(chunk));
       }
     },
