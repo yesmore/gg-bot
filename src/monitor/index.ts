@@ -4,7 +4,6 @@ import { greeting } from './messages';
 import { about, list, photo, start } from './commands';
 import { White_List_Rule } from '../common/constants';
 import { gg_boy, be_yourself } from './commands/white_word';
-import { chatGpt } from './commands/todo_chatgpt';
 import './commands/word_game';
 
 bot.on(message('new_chat_members'), greeting());
@@ -19,9 +18,9 @@ bot.command('quit', async (ctx) => {
 bot.hears(/\/r (.+)/, (ctx) =>
   ctx.reply(`reverse: ${ctx.match[1].split('').reverse().join('')}`)
 );
-bot.hears(/ai (.+)/, (ctx) => {
+bot.hears(/\/ai (.+)/, (ctx) => {
   const msg = ctx.match[1];
-  chatGpt(ctx, msg);
+  // chatGpt(ctx, msg);
 });
 bot.hears('gg boy', gg_boy);
 bot.hears(White_List_Rule, be_yourself);

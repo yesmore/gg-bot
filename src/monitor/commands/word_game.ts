@@ -7,7 +7,7 @@ const scores = new Map();
 
 bot.command('guess', (ctx) => {
   ctx.reply(
-    `🎯猜词游戏规则说明🎯\n\n⭐️格式: @${bot.botInfo?.username} xxx\n⭐️积分：猜对加1，错误不变，发送 /score 查看个人积分\n⭐️提示：三种水果`
+    `🎯猜词游戏规则说明🎯\n\n⭐️格式: /g xxx\n⭐️积分：猜对加1，错误不变，发送 /score 查看个人积分\n⭐️提示：三种水果`
   );
 });
 
@@ -16,7 +16,7 @@ bot.command('score', (ctx) => {
   replyToMessage(ctx, ctx.message?.message_id, `当前积分: ${score}`);
 });
 
-bot.hears(/@akajs_bot (.+)/, (ctx) => {
+bot.hears(/\/g (.+)/, (ctx) => {
   // if (!ctx.message.text.startsWith('@' + bot.botInfo?.username)) {
   //   return;
   // }
