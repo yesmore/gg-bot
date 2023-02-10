@@ -6,7 +6,8 @@ import { White_List_Rule } from '../common/constants';
 import { gg_boy, be_yourself } from './commands/white_word';
 
 import './commands/word_game';
-import { chatGpt } from './commands/todo_chatgpt';
+import { Context } from 'telegraf';
+// import { chatGpt } from './commands/todo_chatgpt';
 
 bot.on(message('new_chat_members'), greeting());
 bot.command('start', start());
@@ -20,9 +21,16 @@ bot.command('quit', async (ctx) => {
 bot.hears(/r (.+)/, (ctx) =>
   ctx.reply(`reverse: ${ctx.match[1].split('').reverse().join('')}`)
 );
+
+async function example(ctx: Context, msg: string) {
+  // To use ESM in CommonJS, you can use a dynamic import
+  const { chatGpt } = await import('./commands/todo_chatgpt');
+  chatGpt(ctx, msg);
+}
+
 bot.hears(/gpt (.+)/, (ctx) => {
   const msg = ctx.match[1];
-  chatGpt(ctx, msg);
+  example(ctx, msg);
   // ctx.reply('接入中...');
 });
 bot.hears('gg boy', gg_boy);
