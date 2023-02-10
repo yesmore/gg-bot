@@ -9,7 +9,7 @@ import { replyToMessage } from '../../utils';
 
 export const chatGpt = async (ctx: Context, msg: string) => {
   try {
-    await ctx.reply(`🤔正在组织语言，请稍等...`);
+    ctx.reply(`🤔正在组织语言，请稍等...`);
     ctx.sendChatAction('typing');
     const _msg = `Explain ${msg}${
       msg.slice(-1) === '.' ? '' : '.'
@@ -50,7 +50,7 @@ export const chatGpt = async (ctx: Context, msg: string) => {
       answer
     );
     if (done && answer !== '') {
-      await replyToMessage(ctx, ctx.message?.message_id!, answer);
+      replyToMessage(ctx, ctx.message?.message_id!, answer);
       done = false;
     } else {
       replyToMessage(ctx, ctx.message?.message_id!, '寄寄');
