@@ -6,6 +6,7 @@ import { White_List_Rule } from '../common/constants';
 import { gg_boy, be_yourself } from './commands/white_word';
 
 import './commands/word_game';
+import { chatGpt } from './commands/todo_chatgpt';
 
 bot.on(message('new_chat_members'), greeting());
 bot.command('start', start());
@@ -21,7 +22,8 @@ bot.hears(/r (.+)/, (ctx) =>
 );
 bot.hears(/gpt (.+)/, (ctx) => {
   const msg = ctx.match[1];
-  ctx.reply('接入中...');
+  chatGpt(ctx, msg);
+  // ctx.reply('接入中...');
 });
 bot.hears('gg boy', gg_boy);
 bot.hears(White_List_Rule, be_yourself);
