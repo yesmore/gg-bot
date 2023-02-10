@@ -40,23 +40,25 @@ export const chatGpt = async (ctx: Context, msg: string) => {
       done = doneReading;
       const chunkValue = decoder.decode(value);
       answer = answer + chunkValue;
-      console.log(
-        new Date().toLocaleString(),
-        '--AI response to <',
-        _msg,
-        '>:\n',
-        chunkValue
-      );
     }
-    await bot.telegram.editMessageText(
-      ctx.chat?.id,
-      ctx.message?.message_id,
-      undefined,
-      answer,
-      { parse_mode: 'Markdown' }
+    // await bot.telegram.editMessageText(
+    //   ctx.chat?.id,
+    //   ctx.message?.message_id,
+    //   undefined,
+    //   answer,
+    //   { parse_mode: 'Markdown' }
+    // );
+    console.log(
+      new Date().toLocaleString(),
+      '--AI response to <',
+      _msg,
+      '>:\n',
+      answer
     );
-    if (done) {
+    if (done && answer !== '') {
       await replyToMessage(ctx, ctx.message?.message_id!, answer);
+    } else {
+      replyToMessage(ctx, ctx.message?.message_id!, '寄寄');
     }
 
     // ctx.editMessageText(response.text, {
