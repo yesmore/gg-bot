@@ -41,13 +41,7 @@ export const chatGpt = async (ctx: Context, msg: string) => {
       const chunkValue = decoder.decode(value);
       answer = answer + chunkValue;
     }
-    // await bot.telegram.editMessageText(
-    //   ctx.chat?.id,
-    //   ctx.message?.message_id,
-    //   undefined,
-    //   answer,
-    //   { parse_mode: 'Markdown' }
-    // );
+
     console.log(
       new Date().toLocaleString(),
       '--AI response to <',
@@ -57,6 +51,7 @@ export const chatGpt = async (ctx: Context, msg: string) => {
     );
     if (done && answer !== '') {
       await replyToMessage(ctx, ctx.message?.message_id!, answer);
+      done = false;
     } else {
       replyToMessage(ctx, ctx.message?.message_id!, '寄寄');
     }
