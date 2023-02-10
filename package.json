@@ -1,6 +1,6 @@
 {
   "name": "gg-bot",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Telegram Bot Vercel Nodejs",
   "main": "src/index.ts",
   "author": "yesmore",
