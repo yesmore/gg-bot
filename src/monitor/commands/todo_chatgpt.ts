@@ -1,6 +1,6 @@
 // import { ChatGPTAPI } from 'chatgpt';
 import { Context } from 'telegraf';
-import bot from '../../bot';
+// import bot from '../../bot';
 import { OpenAIStream, OpenAIStreamPayload } from '../../utils/open_ai_stream';
 import { replyToMessage } from '../../utils';
 
@@ -29,18 +29,18 @@ export const chatGpt = async (ctx: Context, msg: string) => {
       n: 1,
     };
     const stream = await OpenAIStream(payload);
-    // const reader = stream.getReader();
+    const reader = stream.getReader();
 
     const decoder = new TextDecoder();
     let done = false;
     let answer = '';
 
-    // while (!done) {
-    //   const { value, done: doneReading } = await reader.read();
-    //   done = doneReading;
-    //   const chunkValue = decoder.decode(value);
-    //   answer = answer + chunkValue;
-    // }
+    while (!done) {
+      const { value, done: doneReading } = await reader.read();
+      done = doneReading;
+      const chunkValue = decoder.decode(value);
+      answer = answer + chunkValue;
+    }
 
     console.log(
       new Date().toLocaleString(),
@@ -50,8 +50,9 @@ export const chatGpt = async (ctx: Context, msg: string) => {
       answer
     );
 
-    // replyToMessage(ctx, ctx.message?.message_id!, answer);
-    done = false;
+    await replyToMessage(ctx, ctx.message?.message_id!, answer).then(() => {
+      done = false;
+    });
 
     // ctx.editMessageText(response.text, {
     //   chat_id: ctx.chat?.id,
