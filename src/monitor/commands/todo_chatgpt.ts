@@ -17,8 +17,8 @@ export const chatGpt = async (ctx: Context, msg: string) => {
 
     const payload: OpenAIStreamPayload = {
       // model: "text-davinci-003",
-      model: 'text-curie-001',
-      // model: 'text-ada-001',
+      // model: 'text-curie-001',
+      model: 'text-ada-001',
       prompt: _msg,
       temperature: 0.7,
       top_p: 1,
@@ -49,12 +49,9 @@ export const chatGpt = async (ctx: Context, msg: string) => {
       '>:\n',
       answer
     );
-    if (done && answer !== '') {
-      replyToMessage(ctx, ctx.message?.message_id!, answer);
-      done = false;
-    } else {
-      replyToMessage(ctx, ctx.message?.message_id!, '寄寄');
-    }
+
+    replyToMessage(ctx, ctx.message?.message_id!, answer);
+    done = false;
 
     // ctx.editMessageText(response.text, {
     //   chat_id: ctx.chat?.id,
