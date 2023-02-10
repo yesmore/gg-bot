@@ -26,7 +26,7 @@ export const chatGpt = async (ctx: Context, msg: string) => {
       frequency_penalty: 0,
       presence_penalty: 0,
       max_tokens: 200,
-      stream: true,
+      stream: false,
       n: 1,
     };
     const res = await axios.post(
@@ -39,7 +39,8 @@ export const chatGpt = async (ctx: Context, msg: string) => {
         },
       }
     );
-    console.log('数据1', res, '数据2', res.data);
+    console.log('数据1', res);
+    console.log('数据2', res.data);
 
     let done = false;
     let answer = '';
