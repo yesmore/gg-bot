@@ -20,7 +20,7 @@ export const chatGpt = async (ctx: Context, msg: string) => {
       // model: "text-davinci-003",
       // model: 'text-curie-001',
       model: 'text-ada-001',
-      prompt: _msg,
+      prompt: msg,
       temperature: 0.7,
       top_p: 1,
       frequency_penalty: 0,
@@ -49,11 +49,11 @@ export const chatGpt = async (ctx: Context, msg: string) => {
       if (res.status === 200) {
         const { data } = res;
         if (
-          data.data !== '[DONE]' &&
-          data.data.choices &&
-          data.data.choices[0]['finish_reason'] !== 'stop'
+          data !== '[DONE]' &&
+          data.choices &&
+          data.choices[0]['finish_reason'] !== 'stop'
         ) {
-          answer = answer + data.data.choices[0].text;
+          answer = answer + data.choices[0].text;
         } else {
           await ctx.reply(answer).then(() => {
             done = true;
