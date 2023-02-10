@@ -3,6 +3,7 @@ import { Context } from 'telegraf';
 // import bot from '../../bot';
 import { OpenAIStream, OpenAIStreamPayload } from '../../utils/open_ai_stream';
 import { replyToMessage } from '../../utils';
+import axios from 'axios';
 
 // const OPEN_AI_API_KEY = process.env.OPEN_AI_API_KEY || '';
 // const api = new ChatGPTAPI({ apiKey: OPEN_AI_API_KEY });
@@ -28,30 +29,41 @@ export const chatGpt = async (ctx: Context, msg: string) => {
       stream: true,
       n: 1,
     };
-    const stream = await OpenAIStream(payload);
-    const reader = stream.getReader();
-
-    const decoder = new TextDecoder();
-    let done = false;
-    let answer = '';
-
-    while (!done) {
-      const { value, done: doneReading } = await reader.read();
-      done = doneReading;
-      const chunkValue = decoder.decode(value);
-      answer = answer + chunkValue;
-    }
-
-    console.log(
-      new Date().toLocaleString(),
-      '--AI response to <',
-      _msg,
-      '>:\n',
-      answer
+    const res = await axios.post(
+      'https://api.openai.com/v1/completions',
+      payload,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${process.env.OPEN_AI_API_KEY ?? ''}`,
+        },
+      }
     );
+    console.log(res.data);
+    // const stream = await OpenAIStream(payload);
+    // const reader = stream.getReader();
 
-    await replyToMessage(ctx, ctx.message?.message_id!, answer).then(() => {
-      done = false;
+    // const decoder = new TextDecoder();
+    // let done = false;
+    // let answer = '';
+
+    // while (!done) {
+    //   const { value, done: doneReading } = await reader.read();
+    //   done = doneReading;
+    //   const chunkValue = decoder.decode(value);
+    //   answer = answer + chunkValue;
+    // }
+
+    // console.log(
+    //   new Date().toLocaleString(),
+    //   '--AI response to <',
+    //   _msg,
+    //   '>:\n',
+    //   answer
+    // );
+
+    await replyToMessage(ctx, ctx.message?.message_id!, res.data).then(() => {
+      // done = false;
     });
 
     // ctx.editMessageText(response.text, {

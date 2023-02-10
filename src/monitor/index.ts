@@ -19,10 +19,9 @@ bot.command('quit', async (ctx) => {
 bot.hears(/r (.+)/, (ctx) =>
   ctx.reply(`reverse: ${ctx.match[1].split('').reverse().join('')}`)
 );
-bot.hears(/ai (.+)/, async (ctx) => {
+bot.hears(/ai (.+)/, (ctx) => {
   const msg = ctx.match[1];
-  await chatGpt(ctx, msg);
-  // ctx.reply('接入中...');
+  chatGpt(ctx, msg);
 });
 bot.hears('gg boy', gg_boy);
 bot.hears(White_List_Rule, be_yourself);
