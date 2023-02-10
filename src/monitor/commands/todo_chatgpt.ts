@@ -2,6 +2,7 @@
 import { Context } from 'telegraf';
 import bot from '../../bot';
 import { OpenAIStream, OpenAIStreamPayload } from '../../utils/open_ai_stream';
+import { replyToMessage } from '../../utils';
 
 // const OPEN_AI_API_KEY = process.env.OPEN_AI_API_KEY || '';
 // const api = new ChatGPTAPI({ apiKey: OPEN_AI_API_KEY });
@@ -32,11 +33,13 @@ export const chatGpt = async (ctx: Context, msg: string) => {
 
     const decoder = new TextDecoder();
     let done = false;
+    let answer = '';
 
     while (!done) {
       const { value, done: doneReading } = await reader.read();
       done = doneReading;
       const chunkValue = decoder.decode(value);
+      answer = answer + chunkValue;
       console.log(
         new Date().toLocaleString(),
         '--AI response to <',
@@ -44,16 +47,17 @@ export const chatGpt = async (ctx: Context, msg: string) => {
         '>:\n',
         chunkValue
       );
-      await bot.telegram.editMessageText(
-        ctx.chat?.id,
-        ctx.message?.message_id,
-        undefined,
-        chunkValue,
-        { parse_mode: 'Markdown' }
-      );
     }
-
-    // await replyToMessage(ctx, ctx.message?.message_id!, response.text);
+    await bot.telegram.editMessageText(
+      ctx.chat?.id,
+      ctx.message?.message_id,
+      undefined,
+      answer,
+      { parse_mode: 'Markdown' }
+    );
+    if (done) {
+      await replyToMessage(ctx, ctx.message?.message_id!, answer);
+    }
 
     // ctx.editMessageText(response.text, {
     //   chat_id: ctx.chat?.id,
