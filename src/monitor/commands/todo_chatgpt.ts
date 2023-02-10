@@ -2,11 +2,11 @@
 import { Context } from 'telegraf';
 import bot from '../../bot';
 
-const OPEN_AI_API_KEY = process.env.OPEN_AI_API_KEY || '';
-
 export const chatGpt = async (ctx: Context, msg: string) => {
   try {
     const { ChatGPTAPI } = await import('chatgpt');
+
+    const OPEN_AI_API_KEY = process.env.OPEN_AI_API_KEY || '';
     const api = new ChatGPTAPI({ apiKey: OPEN_AI_API_KEY });
     await ctx.reply(`🤔正在组织语言，请稍等...`);
     ctx.sendChatAction('typing');
