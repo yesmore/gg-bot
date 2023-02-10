@@ -49,6 +49,7 @@ export const chatGpt = async (ctx: Context, msg: string) => {
         const { data } = res;
         if (
           data.data !== '[DONE]' &&
+          data.data.choices &&
           data.data.choices[0]['finish_reason'] !== 'stop'
         ) {
           answer = answer + data.data.choices[0].text;
