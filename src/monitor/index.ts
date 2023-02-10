@@ -20,9 +20,9 @@ bot.command('quit', async (ctx) => {
 bot.hears(/r (.+)/, (ctx) =>
   ctx.reply(`reverse: ${ctx.match[1].split('').reverse().join('')}`)
 );
-bot.hears(/ai (.+)/, (ctx) => {
+bot.hears(/ai (.+)/, async (ctx) => {
   const msg = ctx.match[1];
-  chatGpt(ctx, msg);
+  await chatGpt(ctx, msg);
   // ctx.reply('接入中...');
 });
 bot.hears('gg boy', gg_boy);
