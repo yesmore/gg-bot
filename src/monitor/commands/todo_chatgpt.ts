@@ -9,7 +9,7 @@ import { replyToMessage } from '../../utils';
 
 export const chatGpt = async (ctx: Context, msg: string) => {
   try {
-    ctx.reply(`🤔正在组织语言，请稍等...`);
+    ctx.reply(`🤔正在组织语言...`);
     ctx.sendChatAction('typing');
     const _msg = `Explain ${msg}${
       msg.slice(-1) === '.' ? '' : '.'
@@ -17,14 +17,14 @@ export const chatGpt = async (ctx: Context, msg: string) => {
 
     const payload: OpenAIStreamPayload = {
       // model: "text-davinci-003",
-      // model: "text-curie-001",
-      model: 'text-ada-001',
+      model: 'text-curie-001',
+      // model: 'text-ada-001',
       prompt: _msg,
       temperature: 0.7,
       top_p: 1,
       frequency_penalty: 0,
       presence_penalty: 0,
-      max_tokens: 100,
+      max_tokens: 200,
       stream: true,
       n: 1,
     };
