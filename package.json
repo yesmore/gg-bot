@@ -5,6 +5,7 @@
   "main": "src/index.ts",
   "author": "yesmore",
   "homepage": "https://github.com/yesmore/gg-bot",
+  "type": "module",
   "scripts": {
     "dev": "DEBUG=bot* dotenv -- nodemon -e ts -x tsc",
     "devWindows": "@powershell -Command $env:DEBUG='bot*';dotenv -- -- nodemon -e ts -x ts-node src/index.ts",
