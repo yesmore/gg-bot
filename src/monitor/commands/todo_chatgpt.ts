@@ -44,16 +44,17 @@ export const chatGpt = async (ctx: Context, msg: string) => {
         '>:\n',
         chunkValue
       );
+      await bot.telegram.editMessageText(
+        ctx.chat?.id,
+        ctx.message?.message_id,
+        undefined,
+        chunkValue,
+        { parse_mode: 'Markdown' }
+      );
     }
 
     // await replyToMessage(ctx, ctx.message?.message_id!, response.text);
-    // await bot.telegram.editMessageText(
-    //   ctx.chat?.id,
-    //   ctx.message?.message_id,
-    //   undefined,
-    //   chunkValue,
-    //   { parse_mode: 'Markdown' }
-    // );
+
     // ctx.editMessageText(response.text, {
     //   chat_id: ctx.chat?.id,
     //   message_id: ctx.message?.message_id,
