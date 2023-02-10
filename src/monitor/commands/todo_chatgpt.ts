@@ -11,7 +11,7 @@ import axios from 'axios';
 export const chatGpt = async (ctx: Context, msg: string) => {
   try {
     // ctx.reply(`🤔正在组织语言...`);
-    // ctx.sendChatAction('typing');
+    ctx.sendChatAction('typing');
     const _msg = `Explain ${msg}${
       msg.slice(-1) === '.' ? '' : '.'
     } to a 6nd grader in Simplified Chinese with a simple example.`;
@@ -47,8 +47,11 @@ export const chatGpt = async (ctx: Context, msg: string) => {
     while (!done) {
       if (res.status === 200) {
         const { data } = res;
-        if (data !== '[DONE]' && data.choices[0]['finish_reason'] !== 'stop') {
-          answer = answer + data.choices[0].text;
+        if (
+          data.data !== '[DONE]' &&
+          data.data.choices[0]['finish_reason'] !== 'stop'
+        ) {
+          answer = answer + data.data.choices[0].text;
         } else {
           await ctx.reply(answer).then(() => {
             done = true;
