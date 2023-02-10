@@ -9,8 +9,8 @@ import { replyToMessage } from '../../utils';
 
 export const chatGpt = async (ctx: Context, msg: string) => {
   try {
-    ctx.reply(`🤔正在组织语言...`);
-    ctx.sendChatAction('typing');
+    // ctx.reply(`🤔正在组织语言...`);
+    // ctx.sendChatAction('typing');
     const _msg = `Explain ${msg}${
       msg.slice(-1) === '.' ? '' : '.'
     } to a 6nd grader in Simplified Chinese with a simple example.`;
@@ -61,7 +61,7 @@ export const chatGpt = async (ctx: Context, msg: string) => {
     // });
   } catch (err) {
     console.log('Error:', err);
-    await ctx.reply('😭出错了，请稍后再试；如果您是管理员，请检查日志。');
+    await ctx.reply('😭出错了，请稍后再试。');
     throw err;
   }
 };

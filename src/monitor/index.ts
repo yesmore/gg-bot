@@ -4,9 +4,8 @@ import { greeting } from './messages';
 import { about, list, photo, start } from './commands';
 import { White_List_Rule } from '../common/constants';
 import { gg_boy, be_yourself } from './commands/white_word';
-
-import './commands/word_game';
 import { chatGpt } from './commands/todo_chatgpt';
+import './commands/word_game';
 
 bot.on(message('new_chat_members'), greeting());
 bot.command('start', start());
