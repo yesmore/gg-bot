@@ -39,7 +39,26 @@ export const chatGpt = async (ctx: Context, msg: string) => {
         },
       }
     );
-    console.log(res.data);
+    console.log('数据1', res, '数据2', res.data);
+
+    let done = false;
+    let answer = '';
+
+    while (!done) {
+      if (res.status === 200) {
+        const { data } = res;
+        const { choices } = data;
+        if (choices[0]['finish_reason'] !== 'stop') {
+          answer = answer + choices[0].text;
+        } else {
+          await ctx.reply(answer).then(() => {
+            done = true;
+            answer = '';
+          });
+        }
+      }
+    }
+
     // const stream = await OpenAIStream(payload);
     // const reader = stream.getReader();
 
@@ -62,9 +81,8 @@ export const chatGpt = async (ctx: Context, msg: string) => {
     //   answer
     // );
 
-    await replyToMessage(ctx, ctx.message?.message_id!, res.data).then(() => {
-      // done = false;
-    });
+    // await ctx.reply(answer).then(() => {});
+    // replyToMessage(ctx, ctx.message?.message_id!, res.data);
 
     // ctx.editMessageText(response.text, {
     //   chat_id: ctx.chat?.id,
