@@ -16,9 +16,6 @@ bot.command('about', about());
 bot.command(['pt', 'pr', 'prpr'], photo());
 bot.command('list', list());
 bot.command('help', help());
-bot.command('quit', async (ctx) => {
-  await ctx.leaveChat();
-});
 
 bot.hears(/\/r (.+)/, (ctx) =>
   ctx.reply(`reverse: ${ctx.match[1].split('').reverse().join('')}`)
