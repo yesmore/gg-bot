@@ -5,7 +5,9 @@ import { about, list, photo, start, help } from './commands';
 import { White_List_Rule } from '../common/constants';
 import { gg_boy, be_yourself } from './commands/white_word';
 import { replyToMessage } from '../utils/index';
-import { sendAiRequest } from './commands/chatgpt';
+import axios from 'axios';
+
+// import { sendAiRequest } from './commands/chatgpt';
 import './commands/word_game';
 
 bot.on(message('new_chat_members'), greeting());
@@ -30,3 +32,38 @@ bot.hears(/\/ai (.+)/, async (ctx) => {
 });
 bot.hears('gg boy', gg_boy);
 bot.hears(White_List_Rule, be_yourself);
+
+const sendAiRequest = async (prompt: string) => {
+  const OPEN_AI_API_KEY = process.env.OPEN_AI_API_KEY || '';
+  const requestBody = {
+    prompt: prompt,
+    model: 'text-davinci-003',
+    max_tokens: 300,
+    top_p: 1,
+    temperature: 0.7,
+    frequency_penalty: 0,
+    presence_penalty: 0,
+  };
+  try {
+    const response = await axios.post(
+      'https://api.openai.com/v1/completions',
+      requestBody,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${OPEN_AI_API_KEY}`,
+        },
+      }
+    );
+    if (response.status === 200) {
+      const _msg = response.data.choices[0].text;
+      return _msg.startsWith('？')
+        ? response.data.choices[0].text.slice(1)
+        : _msg;
+    }
+    return 'Timeout';
+  } catch (error) {
+    console.error(error);
+    return `😭出错了，请稍后再试。\n错误原因：${error}`;
+  }
+};

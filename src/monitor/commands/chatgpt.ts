@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-const OPEN_AI_API_KEY = process.env.OPEN_AI_API_KEY || '';
-
 export const sendAiRequest = async (prompt: string) => {
+  const OPEN_AI_API_KEY = process.env.OPEN_AI_API_KEY || '';
+
   const requestBody = {
     prompt: prompt,
     model: 'text-davinci-003',
