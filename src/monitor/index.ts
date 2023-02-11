@@ -27,7 +27,7 @@ bot.hears(/\/ai (.+)/, (ctx) => {
   const requestBody = {
     prompt: msg,
     model: 'text-davinci-003',
-    max_tokens: 100,
+    max_tokens: 300,
   };
   // ctx.reply(`🤔正在组织语言...`);
   // ctx.sendChatAction('typing');
@@ -41,7 +41,12 @@ bot.hears(/\/ai (.+)/, (ctx) => {
     .then((res) => {
       console.log('请求：', res.status, res.data);
       if (res.status === 200) {
-        replyToMessage(ctx, ctx.message.message_id, res.data.choices[0].text);
+        const _msg = res.data.choices[0].text;
+        replyToMessage(
+          ctx,
+          ctx.message.message_id,
+          _msg.startsWith('？') ? res.data.choices[0].text.slice(1) : _msg
+        );
       }
     })
     .catch((e) => {
