@@ -25,10 +25,10 @@ bot.hears(/\/r (.+)/, (ctx) =>
 );
 bot.hears(/\/ai (.+)/, async (ctx) => {
   const msg = ctx.match[1];
-  ctx.reply(`🤔正在组织语言...`);
-  // ctx.sendChatAction('typing');
+  // ctx.reply(`🤔正在组织语言...`);
+  ctx.sendChatAction('typing');
   const res = await sendAiRequest(msg);
-  replyToMessage(ctx, ctx.message.message_id, res);
+  await replyToMessage(ctx, ctx.message.message_id, res);
 });
 bot.hears('gg boy', gg_boy);
 bot.hears(White_List_Rule, be_yourself);
