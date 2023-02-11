@@ -1,7 +1,7 @@
 import { message } from 'telegraf/filters';
 import bot from '../bot';
 import { greeting } from './messages';
-import { about, list, photo, start } from './commands';
+import { about, list, photo, start, help } from './commands';
 import { White_List_Rule } from '../common/constants';
 import { gg_boy, be_yourself } from './commands/white_word';
 import { replyToMessage } from '../utils/index';
@@ -13,7 +13,7 @@ bot.command('start', start());
 bot.command('about', about());
 bot.command(['pt', 'pr', 'prpr'], photo());
 bot.command('list', list());
-bot.command('help', list());
+bot.command('help', help());
 bot.command('quit', async (ctx) => {
   await ctx.leaveChat();
 });

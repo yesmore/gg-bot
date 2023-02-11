@@ -5,7 +5,7 @@ import { author, name, version } from '../../../package.json';
 
 const debug = createDebug('bot:about_command');
 
-const about = () => async (ctx: Context) => {
+const help = () => async (ctx: Context) => {
   const message = `
 *🤖ChatGPT使用指南*\n
 格式：/ai 你的问题
@@ -15,4 +15,4 @@ const about = () => async (ctx: Context) => {
   await ctx.replyWithMarkdownV2(message, { parse_mode: 'Markdown' });
 };
 
-export { about };
+export { help };
