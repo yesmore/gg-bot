@@ -19,12 +19,6 @@ bot.command('help', help());
 bot.command('quit', async (ctx) => {
   await ctx.leaveChat();
 });
-bot.command('ai', async (ctx) => {
-  // ctx.reply(`🤔正在组织语言...`);
-  ctx.sendChatAction('typing');
-  const res = await sendAiRequest('我是谁');
-  replyToMessage(ctx, ctx.message.message_id, res);
-});
 
 bot.hears(/\/r (.+)/, (ctx) =>
   ctx.reply(`reverse: ${ctx.match[1].split('').reverse().join('')}`)
@@ -32,7 +26,7 @@ bot.hears(/\/r (.+)/, (ctx) =>
 bot.hears(/\/ai (.+)/, async (ctx) => {
   const msg = ctx.match[1];
   // ctx.reply(`🤔正在组织语言...`);
-  ctx.sendChatAction('typing');
+  // ctx.sendChatAction('typing');
   const res = await sendAiRequest(msg);
   replyToMessage(ctx, ctx.message.message_id, res);
 });
