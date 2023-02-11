@@ -29,7 +29,7 @@ bot.hears(/\/ai (.+)/, (ctx) => {
     max_tokens: 100,
   };
   axios
-    .post('https://api.openai.com/v1/engines/davinci/jobs', requestBody, {
+    .post('https://api.openai.com/v1/completions', requestBody, {
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${OPEN_AI_API_KEY}`,
