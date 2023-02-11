@@ -29,8 +29,8 @@ bot.hears(/\/ai (.+)/, (ctx) => {
     model: 'text-davinci-003',
     max_tokens: 100,
   };
-  ctx.reply(`🤔正在组织语言...`);
-  ctx.sendChatAction('typing');
+  // ctx.reply(`🤔正在组织语言...`);
+  // ctx.sendChatAction('typing');
   axios
     .post('https://api.openai.com/v1/completions', requestBody, {
       headers: {
