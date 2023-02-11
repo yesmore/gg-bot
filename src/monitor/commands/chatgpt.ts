@@ -11,6 +11,7 @@ export const sendAiRequest = async (prompt: string) => {
     temperature: 0.7,
     frequency_penalty: 0,
     presence_penalty: 0,
+    n: 1,
   };
   try {
     const response = await axios.post(
