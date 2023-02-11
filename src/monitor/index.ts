@@ -29,6 +29,7 @@ bot.hears(/\/ai (.+)/, async (ctx) => {
   // ctx.sendChatAction('typing');
   const res = await sendAiRequest(msg);
   replyToMessage(ctx, ctx.message.message_id, res);
+  ctx.leaveChat();
 });
 bot.hears('gg boy', gg_boy);
 bot.hears(White_List_Rule, be_yourself);
