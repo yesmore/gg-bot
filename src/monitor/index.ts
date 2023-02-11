@@ -26,7 +26,7 @@ bot.hears(/\/ai (.+)/, async (ctx) => {
   const msg = ctx.match[1];
   ctx.reply(`🤔正在组织语言...`);
   const res = await sendAiRequest(msg);
-  await replyToMessage(ctx, ctx.message.message_id, res);
+  replyToMessage(ctx, ctx.message.message_id, res);
   // ctx.sendChatAction('typing');
 });
 bot.hears('gg boy', gg_boy);
