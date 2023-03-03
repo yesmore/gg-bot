@@ -1,21 +1,23 @@
 import axios from 'axios';
 
-export const sendAiRequest = async (prompt: string) => {
+export const sendAiRequest = async (messages: string) => {
   const OPEN_AI_API_KEY = process.env.OPEN_AI_API_KEY || '';
 
   const requestBody = {
-    prompt: prompt,
-    model: 'text-davinci-003',
-    max_tokens: 300,
-    top_p: 1,
-    temperature: 0.7,
-    frequency_penalty: 0,
-    presence_penalty: 0,
-    n: 1,
+    model: 'gpt-3.5-turbo',
+    temperature: 0.6,
+    messages,
+    stream: false,
+    // prompt: prompt,
+    // max_tokens: 300,
+    // top_p: 1,
+    // frequency_penalty: 0,
+    // presence_penalty: 0,
+    // n: 1,
   };
   try {
     const response = await axios.post(
-      'https://api.openai.com/v1/completions',
+      'https://api.openai.com/v1/chat/completions',
       requestBody,
       {
         headers: {
